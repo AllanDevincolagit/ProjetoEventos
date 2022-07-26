@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]ProjetoEventos || Início</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ProjetoEventos.styles.css" asp-append-version="true" />
+</head>
+<body style="background-color:#34495E;">
+    <header>
+        <nav class="navbar navbar-expand" style="background-color: #FF5D00">
+            <div class="container-fluid">
+                
+                <a class="navbar-brand" href="/Home/Index">
+                    <img src="~/imgs/logo.png" alt="Logo do site" />
+                </a>
+
+                <div class="flex-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                        <a class="nav-link active" href="#" target="_blank" style="color:white; font-weight:bold;">Login/Cadastro de usuário</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" target="_blank" style="color:white; font-weight:bold;">Cadastar Evento</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" target="_blank" style="color:white; font-weight:bold;">Inscreva-se em um Evento</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="container-fluid" style="background-color:#FF5D00; color:white;">
+        <div class="row pt-5 pt-5">
+            <section class="col-md-4">
+                <h5 class="text-center">Sobre</h5>
+                
+                    <ul class="nav flex-column">
+                        <li class="nav-item text-center">
+                            <p>O Projetox é uma realização da iniciação cientifica</p>
+                        </li>
+                        <li class="nav-item text-center">
+                            <p>Esse projeto é de código aberto e está disponível para visualização no <a href="#" target="_blank" style="color:white;"><b>GitHub</b></a></p>
+                        </li>
+                    </ul>
+               
+            </section>
+
+            <section class="col-md-4">
+                <h5 class="text-center">Contatos</h5>
+                <ul class="nav flex-column">
+                
+                    <li class="nav-item text-center">
+                        <p>
+                            <a class="nav-link active" href="https://pt-br.facebook.com/fatec.taquaritinga/" target="_blank" style="color:white;"><b>Fatec Taquaritinga</b></a>
+                        </p>
+                    </li>
+                    <li class="nav-item text-center">
+                        <p>
+                            <a class="nav-link active" href="tel:+5516111111111" target="_blank" style="color:white;"><b>Telefone: (16) 3252-5250</b></a>
+                        </p>
+                    </li>
+                    <li class="nav-item text-center">
+                            <p>Fatec Taquaritinga 2022</p>
+                    </li>
+                </ul>
+
+            </section>
+
+            <section class="col-md-4">
+                <h5 class="text-center">Problemas no site</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item text-center">
+                        <p>
+                            <a class="nav link active" href="#" target="_blank" style="color:white;"><b>Informe um problema</b></a>
+                        </p>
+                    </li>
+                    <li class="nav-item text-center">
+                        <p>
+                            <a class="nav link active" href="https://www.linkedin.com/in/allan-devincola-60b2331b4/" target="_blank" style="color:white;"><b>Ou fale com um desenvolvedor</b></a>
+                        </p>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

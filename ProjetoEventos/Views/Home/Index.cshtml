@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center my-5">
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 3"></button>
+        </div>
+
+    <div class="carousel-inner">
+
+        <div class="carousel-item active">
+
+            <img src="/imgs/bannerUm.jpg" class="d-block w-75 mx-auto" alt="Primeiro slide do carrosel" style="height:350px;">
+            <div class="carousel-caption d-none d-md-block text-black">
+                <h5>Organize Eventos</h5>
+                <p>Site dedicado a criação e registro de participantes da sua palestra.</p>
+
+            </div>
+
+        </div>
+
+        <div class="carousel-item">
+
+            <img src="/imgs/bannerDois.jpg" class="d-block w-75 mx-auto" alt="..." style="height:350px; object-fit:cover">
+
+            <div class="carousel-caption d-none d-md-block text-black">
+                <h5>Inscreva-se em um evento</h5>
+                <p>Participe de palestras que combinam com você.</p>
+            </div>
+
+        </div>
+
+        <div class="carousel-item">
+            <img src="/imgs/bannerTres.jpg" class="d-block w-75 mx-auto" alt="..." style="height:350px; object-fit:cover">
+
+            <div class="carousel-caption d-none d-md-block text-black">
+                <h5>Faça novas conexões</h5>
+                <p>Conheça pessoas interessadas nos assuntos em que você é craque !</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+
+            <img src="/imgs/bannerQuatroRepa.jpg" class="d-block w-75 mx-auto" alt="..." style="height:350px; object-fit:cover;">
+
+            <div class="carousel-caption d-none d-md-block text-black">
+                <h5>Busque novas inspirações</h5>
+                <p>Encontre o conteúdo necessário para alavancar suas ideias</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+
+            <img src="/imgs/bannerCinco.jpg" class="d-block w-75 mx-auto" alt="..." style="height:350px; object-fit:cover;">
+
+            <div class="carousel-caption d-none d-md-block text-black">
+            <h5>Inspire a outros</h5>
+            <p>Ajude a construir uma comunidade unida e inclusiva</p>
+            </div>
+        </div>
+  
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button> 
+    </div>
+</div>
+
+<div id="textoApreIndex" class="text-white text-center my-3">
+    <h2>Diversos eventos acontecendo agora !</h2>
+
+    <p>Busque e participe dos mais diferentes eventos disponíveis na plataforma.</p>
+    <p>Marque e divulgue sua palestra para pessoas interessadas no assunto, comunique-se e faça networking.</p>
+
+    <h3>Tudo isso aqui no ProjetoEventos</h3>
+</div>
+
+<div class="text-center">
+    <div class="card mb-3" style="background-color:#FF5D00; color:white;">
+        <img src="~/imgs/cardIndexUmRepa.jpg" class="card-img-top" alt="Imagem do card de buscar eventos" style="max-width:100%; width:1150px; height:300px; object-fit:cover; object-position:top;">
+    <div class="card-body">
+        <h5 class="card-title">Buscar Eventos</h5>
+        <p class="card-text">Encontre todos os eventos que estão acontecendo nesse exato momento !</p>
+  </div>
+
+  <div>
+      <a href="#" target="_blank">
+        <button style="background-color:#0D77F6; color:white; font-weight:bold;">Entrar</button>
+      </a>
+  </div>
+    </div>
+</div>
+
+<div class="text-center">
+  <div class="card mb-3" style="background-color:#FF5D00; color:white;">
+    <img src="~/imgs/cardIndexDoisRepa.jpg" class="card-img-top " alt="Imagem do card de buscar eventos" style="max-width:100%; width:1150px; height:300px; object-fit:cover; object-position:top">
+    <div class="card-body">
+        <h5 class="card-title">Marque uma palestra</h5>
+        <p class="card-text">Crie uma palestra e alcance seu público alvo</p>
+    </div>
+  <div>
+      <a href="#" target="_blank">
+        <button style="background-color:#0D77F6; color:white; font-weight:bold;">Entrar</button>
+      </a>
+  </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <div class="card mb-3" style="background-color:#FF5D00; color:white;">
+    <img src="/imgs/cardIndexTresRepa.jpg" class="card-img-top " alt="Imagem do card de buscar eventos" style="max-width:100%; width:1150px; height:300px; object-fit:cover;">
+    <div class="card-body">
+        <h5 class="card-title">Administre seu Evento</h5>
+        <p class="card-text">Verifique e oriente seu público através dessa área</p>
+    </div>
+    <div>
+      <a href="#" target="_blank">
+        <button style="background-color:#0D77F6; color:white; font-weight:bold;">Entrar</button>
+      </a>
+    </div>
+  </div>
+</div>
+
