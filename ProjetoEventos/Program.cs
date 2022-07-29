@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using ProjetoEventos;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<Contexto>(b => b.UseSqlServer("Server=DESKTOP-GDT3KDH\\SQLEXPRESS;Database=ProjetoEventos;User Id=sa;Password=1234;"));
 
 var app = builder.Build();
 
