@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProjetoEventos.Entidades;
+using ProjetoEventos.Models;
 
 namespace ProjetoEventos.Controllers
 {
@@ -10,6 +12,14 @@ namespace ProjetoEventos.Controllers
         public UsuarioController(Contexto contexto)
         {
             db = contexto;
+        }
+        public IActionResult ListaPermissoes(int ID)
+        {
+            ListaPermissoesModel model = new ListaPermissoesModel();
+            model.UsuarioID = ID;
+            model.TodasPermissoes = db.PERMISSOES.ToList();
+            model.PermissoesUsuario = db.USUARIO_PERMISSOES.Where(a=> a.UsuarioID == ID).Include(a=> a.permissao).ToList();
+            return View(model);
         }
         public ActionResult Index()
         {

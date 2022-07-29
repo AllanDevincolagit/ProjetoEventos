@@ -1,0 +1,45 @@
+﻿@model ProjetoEventos.Entidades.Login
+
+@{
+    ViewData["Title"] = "Login/Cadastro";
+}
+
+<h2 class="text-center my-2" style="color:white;">Entre em sua conta e aproveite os serviços que nosso site tem a oferecer</h2>
+
+<div class="row justify-content-center">
+    <div class="col-4 text-center" style="background-color:#FF5D00; color:white; font-weight:bold; border-radius:5px; border-width:medium; border-style:solid; border-color:white;">
+        <form asp-action="Create" class="text-center">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group my-2">
+                 <label asp-for="EmailOuLogin" class="control-label"></label>
+                 <input asp-for="EmailOuLogin" class="form-control" />
+                 <span asp-validation-for="EmailOuLogin" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="Senha" class="control-label"></label>
+                <input asp-for="Senha" class="form-control" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+
+            <div class="form-group my-2">  
+                <input type="submit" value="Entrar" class="btn btn-primary" />   
+            </div>
+        </form>
+
+    </div>
+
+    <div class="text-center">
+        <h5 style="color:white;">Não tem uma conta ?</h5>
+    </div>
+
+    <div class="text-center">
+        <a href="/Usuario/Create" target="_blank"><h6 style="color:white;">Cadastre-se</h6></a>
+    </div>
+
+</div>
+    
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
