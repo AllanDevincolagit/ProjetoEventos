@@ -11,8 +11,8 @@ using ProjetoEventos;
 namespace ProjetoEventos.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220728201211_TabelanxmUsuarioPermissoes")]
-    partial class TabelanxmUsuarioPermissoes
+    [Migration("20220803153727_PermissoesDeUsuario")]
+    partial class PermissoesDeUsuario
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,32 +22,6 @@ namespace ProjetoEventos.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("ProjetoEventos.Entidades.Login", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("EmailOuLogin")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UsuarioID")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioID");
-
-                    b.ToTable("LOGIN");
-                });
 
             modelBuilder.Entity("ProjetoEventos.Entidades.Permissoes", b =>
                 {
@@ -111,7 +85,7 @@ namespace ProjetoEventos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<int>("PermissaoID")
+                    b.Property<int>("PermissoesID")
                         .HasColumnType("int");
 
                     b.Property<int>("UsuarioID")
@@ -119,29 +93,18 @@ namespace ProjetoEventos.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("PermissaoID");
+                    b.HasIndex("PermissoesID");
 
                     b.HasIndex("UsuarioID");
 
                     b.ToTable("USUARIO_PERMISSOES");
                 });
 
-            modelBuilder.Entity("ProjetoEventos.Entidades.Login", b =>
-                {
-                    b.HasOne("ProjetoEventos.Entidades.Usuario", "usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("usuario");
-                });
-
             modelBuilder.Entity("ProjetoEventos.Entidades.Usuario_Permissoes", b =>
                 {
-                    b.HasOne("ProjetoEventos.Entidades.Permissoes", "permissao")
+                    b.HasOne("ProjetoEventos.Entidades.Permissoes", "permissoes")
                         .WithMany()
-                        .HasForeignKey("PermissaoID")
+                        .HasForeignKey("PermissoesID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -151,7 +114,7 @@ namespace ProjetoEventos.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("permissao");
+                    b.Navigation("permissoes");
 
                     b.Navigation("usuario");
                 });

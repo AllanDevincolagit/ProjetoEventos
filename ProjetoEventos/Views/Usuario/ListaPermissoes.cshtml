@@ -1,20 +1,22 @@
-﻿@model  ProjetoEventos.Models.ListaPermissoesModel
+﻿@model ProjetoEventos.Models.ListaPermissoesModel
+
 <div class="row">
     <div class="col-6">
         <ul class="list-group">
             @foreach (var item in Model.PermissoesUsuario)
             {
-                <li class="list-group-item">@item.permissao.Descricao</li>
+                <li class="list-group-item">@item.permissoes.Descricao</li>
             }
         </ul>
     </div>
-
-    <div class="col-6">
-        <ul class="list-group">
-            @foreach (var item in Model.TodasPermissoes)
-            {
-                <li class="list-group-item"><a href="/UsuarioPermissoes/AdicionarPermissao/@Model.UsuarioID/@item.ID" class="btn btn-primary"></a> @item.Descricao</li>
-            }
+     <div class="col-6">
+           <ul class="list-group">
+                @foreach (var item in Model.TodasPermissoes)
+                {
+                    <li class="list-group-item">
+                        <a href="/UsuarioPermissoes/AdicionarPermissao/@Model.UsuarioID/@item.ID" class = "btn btn-success"> + </a>
+                    @item.Descricao</li>
+                }
         </ul>
     </div>
 </div>

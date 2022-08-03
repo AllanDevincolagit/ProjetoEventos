@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjetoEventos.Entidades;
@@ -6,6 +7,7 @@ using ProjetoEventos.Models;
 
 namespace ProjetoEventos.Controllers
 {
+    [Authorize(AuthenticationSchemes = "CookieAuthentication")]
     public class UsuarioController : Controller
     {
         private readonly Contexto db;
@@ -13,14 +15,16 @@ namespace ProjetoEventos.Controllers
         {
             db = contexto;
         }
-        public IActionResult ListaPermissoes(int ID)
+
+        public IActionResult ListaPermissoes(int id)
         {
             ListaPermissoesModel model = new ListaPermissoesModel();
-            model.UsuarioID = ID;
             model.TodasPermissoes = db.PERMISSOES.ToList();
-            model.PermissoesUsuario = db.USUARIO_PERMISSOES.Where(a=> a.UsuarioID == ID).Include(a=> a.permissao).ToList();
+            model.UsuarioID = id;
+            model.PermissoesUsuario = db.USUARIO_PERMISSOES.Where(a=>a.UsuarioID == id).Include(a => a.permissoes).ToList();
             return View(model);
         }
+       
         public ActionResult Index()
         {
             return View(db.USUARIO.ToList());

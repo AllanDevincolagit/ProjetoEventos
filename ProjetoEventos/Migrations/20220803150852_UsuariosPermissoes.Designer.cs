@@ -11,8 +11,8 @@ using ProjetoEventos;
 namespace ProjetoEventos.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220728021036_LoginMigracao")]
-    partial class LoginMigracao
+    [Migration("20220803150852_UsuariosPermissoes")]
+    partial class UsuariosPermissoes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,25 +23,25 @@ namespace ProjetoEventos.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("ProjetoEventos.Entidades.Login", b =>
+            modelBuilder.Entity("ProjetoEventos.Entidades.Permissoes", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<string>("EmailOuLogin")
+                    b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Senha")
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.ToTable("LOGIN");
+                    b.ToTable("PERMISSOES");
                 });
 
             modelBuilder.Entity("ProjetoEventos.Entidades.Usuario", b =>

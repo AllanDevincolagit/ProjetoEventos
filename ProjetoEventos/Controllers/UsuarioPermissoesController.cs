@@ -10,13 +10,12 @@ namespace ProjetoEventos.Controllers
         {
             db = contexto;
         }
-
-        [HttpGet("[controller]/[action]/{UsuarioID}/{PermissaoID}")]
-        public IActionResult AdicionarPermissao(int UsuarioID, int PermissaoID)
+        [HttpGet("[Controller]/[Action]/{UsuarioID}/{PermissoesID}/")]
+        public IActionResult AdicionarPermissao(int UsuarioID, int PermissoesID)
         {
             Usuario_Permissoes novo = new Usuario_Permissoes();
             novo.UsuarioID = UsuarioID;
-            novo.PermissaoID = PermissaoID;
+            novo.PermissoesID = PermissoesID;
             db.USUARIO_PERMISSOES.Add(novo);
             db.SaveChanges();
             return Redirect("/Usuario");

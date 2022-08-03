@@ -8,5 +8,6 @@ namespace ProjetoEventos.Models
 
         public List<Permissoes> TodasPermissoes { get; set; }
         public List<Usuario_Permissoes> PermissoesUsuario { get; set; }
+
     }
 }

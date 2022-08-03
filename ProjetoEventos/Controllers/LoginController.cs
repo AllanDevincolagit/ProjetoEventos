@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoEventos.Entidades;
+using System.Security.Claims;
 
 namespace ProjetoEventos.Controllers
 {
@@ -11,84 +12,37 @@ namespace ProjetoEventos.Controllers
         {
             db = contexto;
         }
-        public ActionResult Index()
-        {
-            return View(db.LOGIN.ToList());
-        }
-
-        // GET: LoginController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View(db.LOGIN.Where(a=> a.Id == id).FirstOrDefault());
-        }
-
-        // GET: LoginController/Create
-        public ActionResult Create()
+        public IActionResult Entrar()
         {
             return View();
         }
 
-        // POST: LoginController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Login collection)
+
+        public async Task<IActionResult> Entrar(string login, string senha)
         {
-            try
+            Usuario usuarioLogado = db.USUARIO.Where(a => a.Login == login && a.Senha == senha).FirstOrDefault();
+
+            if (usuarioLogado == null)
             {
-                db.LOGIN.Add(collection);
-                db.SaveChanges();
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
+                TempData["erro"] = "Login ou Senha Incorretos";
                 return View();
             }
+
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Name, usuarioLogado.Nome));
+            claims.Add(new Claim(ClaimTypes.Sid, usuarioLogado.ID.ToString()));
+
+            var userIdentity = new ClaimsIdentity(claims, "Acesso");
+            ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+            await HttpContext.SignInAsync("CookieAuthentication", principal, new AuthenticationProperties());
+            return Redirect("/");
         }
 
-        // GET: LoginController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Logoff()
         {
-            return View(db.LOGIN.Where(a=> a.Id == id).FirstOrDefault());
-        }
-
-        // POST: LoginController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Login collection)
-        {
-            try
-            {
-                db.LOGIN.Update(collection);
-                db.SaveChanges();
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: LoginController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View(db.LOGIN.Where(a=>a.Id == id).FirstOrDefault());
-        }
-
-        // POST: LoginController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Login collection)
-        {
-            try
-            {
-                db.LOGIN.Remove(db.LOGIN.Where(a => a.Id == id).FirstOrDefault());
-                db.SaveChanges();
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await HttpContext.SignOutAsync("CookieAuthentication");
+            return Redirect("/Login/Entrar");
         }
     }
 }

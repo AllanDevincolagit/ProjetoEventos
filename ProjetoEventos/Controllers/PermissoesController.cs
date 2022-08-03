@@ -1,17 +1,19 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoEventos.Entidades;
 
 namespace ProjetoEventos.Controllers
 {
+    [Authorize(AuthenticationSchemes = "CookieAuthentication")]
     public class PermissoesController : Controller
     {
         private readonly Contexto db;
+
         public PermissoesController(Contexto contexto)
         {
             db = contexto;
         }
-        // GET: PermissoesController
         public ActionResult Index()
         {
             return View(db.PERMISSOES.ToList());
@@ -49,7 +51,7 @@ namespace ProjetoEventos.Controllers
         // GET: PermissoesController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(db.PERMISSOES.Where(a=>a.ID == id).FirstOrDefault());
+            return View(db.PERMISSOES.Where(a => a.ID == id).FirstOrDefault());
         }
 
         // POST: PermissoesController/Edit/5
@@ -57,8 +59,8 @@ namespace ProjetoEventos.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Permissoes collection)
         {
-            try { 
-            
+            try
+            {
                 db.PERMISSOES.Update(collection);
                 db.SaveChanges();
                 return RedirectToAction(nameof(Index));

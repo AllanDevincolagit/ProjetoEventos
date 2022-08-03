@@ -4,10 +4,24 @@
 
 namespace ProjetoEventos.Migrations
 {
-    public partial class UsuarioMigracao : Migration
+    public partial class UsuariosPermissoes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "PERMISSOES",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PERMISSOES", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "USUARIO",
                 columns: table => new
@@ -28,6 +42,9 @@ namespace ProjetoEventos.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "PERMISSOES");
+
             migrationBuilder.DropTable(
                 name: "USUARIO");
         }

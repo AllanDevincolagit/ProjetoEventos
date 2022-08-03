@@ -6,7 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<Contexto>(b => b.UseSqlServer("Server=DESKTOP-GDT3KDH\\SQLEXPRESS;Database=ProjetoEventos;User Id=sa;Password=1234;"));
+builder.Services.AddDbContext<Contexto>(a => a.UseSqlServer("Server=DESKTOP-GDT3KDH\\SQLEXPRESS;Database=ProjetoEventos;User Id=sa;Password=1234;"));
+builder.Services.AddAuthentication("CookieAuthentication").AddCookie("CookieAuthentication", option =>
+{
+    option.LoginPath = "/Login/Entrar";
+    option.AccessDeniedPath = "/Login/Negado";
+});
 
 var app = builder.Build();
 
@@ -22,7 +27,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

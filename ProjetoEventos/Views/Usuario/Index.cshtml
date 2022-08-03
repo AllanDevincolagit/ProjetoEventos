@@ -24,9 +24,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Login)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Senha)
-            </th>
+           
             <th></th>
         </tr>
     </thead>
@@ -45,10 +43,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Login)
             </td>
+           
             <td>
-                @Html.DisplayFor(modelItem => item.Senha)
-            </td>
-            <td>
+                <a href="/Usuario/ListaPermissoes/@item.ID">Permissões</a>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
