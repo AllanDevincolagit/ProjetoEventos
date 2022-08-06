@@ -4,10 +4,41 @@
 
 namespace ProjetoEventos.Migrations
 {
-    public partial class PermissoesDeUsuario : Migration
+    public partial class UsoPermMescladasLoginUsoFeito : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "PERMISSOES",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PERMISSOES", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "USUARIO",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_USUARIO", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "USUARIO_PERMISSOES",
                 columns: table => new
@@ -49,6 +80,12 @@ namespace ProjetoEventos.Migrations
         {
             migrationBuilder.DropTable(
                 name: "USUARIO_PERMISSOES");
+
+            migrationBuilder.DropTable(
+                name: "PERMISSOES");
+
+            migrationBuilder.DropTable(
+                name: "USUARIO");
         }
     }
 }

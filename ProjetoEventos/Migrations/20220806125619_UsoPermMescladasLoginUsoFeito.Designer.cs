@@ -11,8 +11,8 @@ using ProjetoEventos;
 namespace ProjetoEventos.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220803150852_UsuariosPermissoes")]
-    partial class UsuariosPermissoes
+    [Migration("20220806125619_UsoPermMescladasLoginUsoFeito")]
+    partial class UsoPermMescladasLoginUsoFeito
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,6 +75,48 @@ namespace ProjetoEventos.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("USUARIO");
+                });
+
+            modelBuilder.Entity("ProjetoEventos.Entidades.Usuario_Permissoes", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("PermissoesID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PermissoesID");
+
+                    b.HasIndex("UsuarioID");
+
+                    b.ToTable("USUARIO_PERMISSOES");
+                });
+
+            modelBuilder.Entity("ProjetoEventos.Entidades.Usuario_Permissoes", b =>
+                {
+                    b.HasOne("ProjetoEventos.Entidades.Permissoes", "permissoes")
+                        .WithMany()
+                        .HasForeignKey("PermissoesID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjetoEventos.Entidades.Usuario", "usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("permissoes");
+
+                    b.Navigation("usuario");
                 });
 #pragma warning restore 612, 618
         }
